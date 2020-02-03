@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://js.jirengu.com
+
+Copyright (c) 2020 by anonymous (http://js.jirengu.com/jiqomekali/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+/* 
+ * 利用 css3新增的 transform 的 translate 属性可以设置百分比，
+ * 这个百分比是相对于自身的宽和高，因此可以将translate 设置为 -50%
+ */
+/* .parent{
+  border:1px solid red;
+  height: 300px;
+  position:relative;
+}
+
+.son{
+  background: green;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+} */
+
+/**
+ * lineheight 把son 设置为行内元素，通过text-align 也可以做到水 平居中,同时通过 vertical-align 做到垂直方向上的居中，代码如下：
+ */
+/* .parent{
+  border:1px solid red;
+  
+  line-height: 300px;
+  text-align: center;
+  font-size:0px;
+}
+
+.son{
+  background: green;
+  
+  font-size:16px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: initial;
+  text-align: left;
+} */
+
+/**
+ * flex 布局： 
+ */
+/* .parent{
+  border:1px solid red;
+  height:300px;  
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.son{
+  background: green;
+} */
+
+/**
+ * grid 布局：兼容不好
+ */
+/* .parent{
+  height: 300px;
+  border:1px solid red;
+  display: grid;
+}
+
+.son{
+  background: green;
+  align-self:center;
+  justify-self:center;
+} */
+
+/**
+ *  css-table
+ */
+/* .parent{
+  border: 1px solid red;
+  height:300px;
+  width: 1000px;
+  display:table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.son{
+  background: green;
+  display: inline-block;
+} */
+
+
+/**
+ * 1. pc端有兼容性要求，宽高固定，推荐使用 absolute + 负 margin
+   2. pc端有兼容要求，宽高不固定，推荐 css-table
+
+   3. pc端无兼容性要求，推荐flex
+    
+   4. 移动端推荐使用 flex
+ */
+</style>
+</head>
+<body>
+    <!--实现水平垂直居中； 子元素不定宽高 -->
+    <div class="parent">
+      <div class="son">text</div>
+    </div>
+</body>
+</html>
