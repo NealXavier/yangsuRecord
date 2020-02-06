@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>css变量实现主题替换</title>
+</head>
+<body>
+  
+</body>
+<style>
+
+  :root {
+    --bg: white;
+    --text-color: #555;
+    --link-color: #639A67;
+    --link-hover: #205D67;
+  }
+  .pink-theme {
+    --bg: hotpink;
+    --text-color: white;
+    --link-color: #B793E6;
+    --link-hover: #3532A7;
+  }
+</style>
+<script>
+  const toggleBtn = document.querySelector('.toggle-theme')
+  toggleBtn.addEventListener('click',e =>{
+    e.preventDefault()
+    if(document.body.classList.contains('pink-theme')){
+      // 当前主题为粉色主题,需要移除 pink-theme class
+      
+      toggle.innerText = '切换正常主题色'
+    }else{
+      document.body.clasList.add('pink-theme')
+      toggle.innerText = '切换为粉色主题'
+    }
+  })
+
+  // 同时也可以利用localStorage 实现主题的保存：
+  const toggleBtn = document.querySelector('pinkTheme')
+  if(localStorage.getItem('pinkTheme')){
+    document.body.classList.add('pink-theme')
+    toggle.innerText = '切换为粉色主题'
+  }
+  toggleBtn.addEventListener('click',e=>{
+    e.preventDefault()
+
+    if(document.body.classList.contains('pink-theme')){
+      // 当前主题为粉色主题,需要移除 pink-theme class
+      document.body.classList.remove('pink-theme')
+    }else{
+      document.body.classList.add('pink-theme')
+      toggle.innerText = '切换为粉色主题'
+      localStorage.setItem('pinkTheme',true)
+    }
+        
+  })
+</script>
+</html>
