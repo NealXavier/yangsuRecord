@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+    <div id="app">
+      <h2>{{title}}</h2>
+      <input v-model = "name"/>
+      <h1>{{name}}</h1>
+      <button v-on:click="clickMe">clickMe!</button>
+  </div>  
+</body>
+<script src='Observer.js'></script>
+<script src='Wacther.js'></script>
+<script src='Self.js'></script>
+<script>
+    var selfVue = new SelfVue({
+        el: '#app',
+        data: {
+            title: 'hello world',
+            name: ''
+        },
+        methods:{
+          clickMe:function(){
+            this.title = `hello world`
+          },
+        },
+        mounted: function(){
+          window.setTimeout(()=>{
+            this.title = '您好'
+          },1000)
+        }
+    });
+
+  window.setTimeout(function(){
+    selfVue.title = '你好';
+  },2000)
+
+  window.setTimeout(function(){
+    selfVue.name = 'canfoo';
+  },2000)
+  /**
+   * 这时候打开页面，可以看到页面刚开始显示了是'hello world'，
+   * 过了2s后就变成'canfoo'了。到这里，总算大功告成一半了，
+   * 但是还有一个细节问题，我们在赋值的时候是这样的形式 '  
+   * selfVue.data.name = 'canfoo'  ' 
+   * 而我们理想的形式是'  selfVue.name = 'canfoo'  
+   * '为了实现这样的形式，我们需要在new SelfVue的时候做一个代理处理，
+   * 让访问selfVue的属性代理为访问selfVue.data的属性，
+   * 实现原理还是使用Object.defineProperty( )对属性值再包一层：
+   */
+</script>
+</html>
