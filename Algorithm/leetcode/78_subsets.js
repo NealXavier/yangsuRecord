@@ -59,3 +59,41 @@ var subsets = function(nums){
   backTrack(nums,0,[],res)
   return res
 }
+
+
+
+/**
+ * ===============================================================================
+ */
+
+ // solve2: 位运算
+ // 详细解答在: https://blog.csdn.net/gh6267/article/details/88116764
+
+ // 简单解释下:
+
+ /** (nums.length)   A          B             C
+  *   0        000 & 001      000 & 010      000 & 100       []   - 都不带
+  *   1        001 & 001      001 & 010      001 & 100       [A]  只有第一个数参与& 运算为 1 ，带它
+  *   2        010 & 001      010 & 010      010 & 100       [B]  只有第二个数参与& 运算为 1 ，带它
+  *   3        011 & 001      011 & 010      011 & 100       [A,B]  A,B 都为1 
+  *   4        100 & 001      100 & 010      100 & 100       [C]  
+  *   5        101 & 001      101 & 010      101 & 100       [A,C] 
+  *   6        110 & 001      110 & 010      110 & 100       [B,C]
+  *   7        111 & 001      111 & 010      111 & 100       [A,B,C]
+  */
+
+ var subsets = function(nums){
+   var res = []  // 最终结果集
+   var curr = []  // 局部结果集
+   var len = 1 << nums.length     // 子集的个数为 nums.length
+  for(var i = 0; i < len;i++){
+    for(var j = 0; j < nums.length;j++){
+      if(i & (1 << j)){
+          curr.push(nums[j])
+      }
+    }
+    res.push(curr.slice())
+    curr = []
+  } 
+   return res
+ }
