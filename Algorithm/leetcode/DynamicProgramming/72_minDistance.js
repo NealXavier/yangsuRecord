@@ -1,6 +1,6 @@
 var minDistance = function(word1,word2){
   // 定义状态
-  // dp[i,j] 代表 word1 .. 到 word2 最少操作多少步
+  // dp[i,j] 代表对于s1的前i个字符和s2的前j个字符，两者的编辑距离
   var dp = new Array(word2.length+1).fill(0)
   // 为什么建立的长度是 dp[word1Len+1][word2Len+1]
   // 如果能把矩阵图画出来的话应该会更清楚
@@ -34,12 +34,16 @@ var minDistance = function(word1,word2){
   
   for(var i = 1; i <= word1.length;i++){
     for(var j = 1;j<=word2.length;j++){
-      if(word1[i] === word2[j]){
+      if(word1[i-1] === word2[j-1]){ // 这个逻辑很绕,dp[i][j] 
+                                    // 代表的是 word1[0...i-1] 和 word2[0,...j-1] 
+                                    // 之间需要多少次转换,z所以我写成 word1[i] === word2[j]
         dp[i][j] = dp[i-1][j-1]
       }else{
-        dp[i][j] = 1+ Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1])
+        dp[i][j] = 1+ Math.min(dp[i-1][j],Math.min(dp[i][j-1],dp[i-1][j-1]))
       }   
     }
   }
   return dp[word1.length][word2.length]
 }
+
+
