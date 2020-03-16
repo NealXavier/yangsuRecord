@@ -118,3 +118,10 @@ for(var j = 1; j < len;j++){
 
 // 这两种遍历都是10种, 但是执行的轨迹不同。
 // 之所以会提起这个,还是因为发现。在遍历过程自己连执行轨迹都没想明白
+
+
+
+var arr = [1,2,3,4,5]
+arr.reduce((accumulator,currentValue,currentIndex,arr)=>{
+    return accumulator+currentValue
+})
