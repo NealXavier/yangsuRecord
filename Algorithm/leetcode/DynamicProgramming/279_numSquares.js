@@ -39,7 +39,7 @@ var dfsHelper = function(n,map){
 }
 
 // 其实这道题用bfs的速度说不定会更快,毕竟纵深太长，
-// 思路是来自与: 
+// 思路是来自与: https://leetcode-cn.com/problems/perfect-squares/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by--51/
 // 这道题我没想过也能转化为
 // bfs 
 var numSquares = function(n){
