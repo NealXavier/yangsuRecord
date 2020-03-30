@@ -26,6 +26,5 @@ var leastInterval = function(tasks,n){
   // max_num 代表最频繁的任务的个数
   var max_num = z ;
   var res = (max - 1) * (n+1) + max_num  // 递归公式 n代表间隔 , max代表最大频次的任务个数
-  return res > tasks.length ? res:tasks.length // 因为贪心算法有可能不是最优解,所以需要和数组长度进行比较, 
-                                               // 如果公式结果比数组长度显然不符合逻辑
+  return res > tasks.length ? res:tasks.length
 }

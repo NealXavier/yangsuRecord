@@ -63,6 +63,7 @@ var numSquares = function(n){
       for(var j = 1; j*j <= cur;j++){
         var next = cur - j*j
         // base case
+
         if(next === 0) return level
 
         if(!visited.has(next)){
