@@ -22,7 +22,7 @@ var dailyTemperatures = function(T){
     if(deSt.length === 0 || T[deSt[deSt.length-1]] >= T[i]){
       deSt.push(i)
     }else{
-      while(deSt.length !== 0 && T[i] >= T[deSt[deSt.length - 1]]){
+      while(deSt.length !== 0 && T[i] > T[deSt[deSt.length - 1]]){
         var top = deSt.pop()
         res[top] = i - top
       }

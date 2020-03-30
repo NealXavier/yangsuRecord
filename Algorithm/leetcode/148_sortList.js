@@ -4,7 +4,7 @@
 var sortList = function(head){
   if(!head || !(head.next)) return head  // 为空或者链表只有一个节点
   var slow = head, fast = head
-  while(fast && fast.next &&fast.next.next){
+  while(fast && fast.next && fast.next.next){
     slow = slow.next
     fast = fast.next.next
   }

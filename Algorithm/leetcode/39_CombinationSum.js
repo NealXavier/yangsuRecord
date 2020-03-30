@@ -63,7 +63,7 @@ function backTrack(t,pos,rest,path,begin,res){
   } 
 
   for(var i = begin; i < pos.length;i++){
-    // 在数组有序的前提下，剪枝
+    // 在数组有序的前提下，剪枝 
     if (rest - pos[i] < 0) break;
     path.push(pos[i])
     backTrack(t,pos,rest-pos[i],path,i,res)

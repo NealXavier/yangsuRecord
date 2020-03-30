@@ -5,7 +5,6 @@ var sortColors = function(nums) {
 
 var quickSort = function(nums,left,right){
   if(left >=right) return;
-  debugger
   var pivot = participation(nums,left,right)
   quickSort(nums,left,pivot)
   quickSort(nums,pivot+1,right)
