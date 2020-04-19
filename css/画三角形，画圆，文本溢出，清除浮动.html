@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://js.jirengu.com
+
+Copyright (c) 2020 by anonymous (http://js.jirengu.com/purekuriqu/9/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>css画三角形</title>
+<style id="jsbin-css">
+.common {
+  width:0;
+  height:0;
+  border:50px solid transparent;
+  display:inline-block;
+}
+
+#c1 {
+  border-bottom-color:yellow;
+}
+
+#c2 {
+  border-top-color:yellow;
+}
+
+#c3 {
+  border-right-color:yellow;
+}
+
+#c4 {
+  border-left-color:yellow;
+}
+
+#circle {
+  width:100px;
+  height:100px;
+  background: #ddd;
+  border-radius:50%;
+}
+
+#text {
+  border:2px dotted #666;
+  margin:0 auto;
+  white-space:nowrap; /*不换行*/
+  overflow:hidden;/*超出时截断*/
+  width:400px; /*设置宽度*/
+  text-overflow:ellipsis; /*超出时用...代替*/
+}
+
+.clear{
+  width:400px;
+  background: #ddd;
+  /* font-size:0; */
+}
+.clear .title{
+  color:#666;
+}
+
+/*设置display:inline-block 会让元素之间有间隙,解决方案是让父元素font-size:0,子元素重新设置font-size大小*/
+.clear p{
+  /* font-size:14px; */
+  text-align: center;
+  float:left;
+  /* display:inline-block; */ 
+  width: 25%;
+  border:0;
+}
+
+/*为什么需要设置清除浮动，是因为子元素在设置了float:left之后脱离了文档流，为什么会脱离文档流，是因为需要块级元素成行排列，而不是单独一行排列*/
+/*清除浮动打开方式*/
+.clear::after{
+  content:"";
+  clear:both;
+  display:block;
+}
+
+
+</style>
+</head>
+<body>
+    <div id="c1" class="common"></div>
+    <div id="c2" class="common"></div>
+    <div id="c3" class="common"></div>
+    <div id="c4" class="common"></div>
+    <p>
+      <bold style="color:#666">画三角形</bold>    
+    </p>  
+    <hr>
+    <div id="circle"></div>
+    <p style="margin-top:20px;color:#666">画原型</p>
+    <div id="text">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum fuga magni itaque aperiam possimus autem neque quos suscipit repudiandae incidunt, similique, vel, vero blanditiis mollitia consequatur delectus distinctio quo modi.
+    </div>
+    <p style="color:#666">
+      文本溢出是如何处理
+    </p>
+    <hr>
+    <div class="clear">
+        <h2 class="title">简历模版</h2>
+        <p>家具</p>
+        <p>买卖</p>
+        <p>玩乐</p>
+        <p>租房</p>
+        <p>电影</p>
+        <p>洗浴</p>
+        <p>洗浴</p>
+        <p>洗浴</p>
+    </div>
+</body>
+</html>

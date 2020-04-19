@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://js.jirengu.com
+
+Copyright (c) 2020 by anonymous (http://js.jirengu.com/sibazohenu/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>垂直居中</title>
+<style id="jsbin-css">
+#c1{
+  width: 200px;
+  /* height:100px; */
+  border:3px solid pink;
+  border-radius:3px;
+  background: white;
+  text-align: center;
+  padding-top:10px; /*设置上下边距一样*/
+  padding-bottom:10px;
+}
+
+.c1{
+  color:pink;
+  font-size:20px;
+}
+
+#c2 {
+  width: 200px;
+  height: 100px;
+  border:3px solid pink;
+  border-radius:3px;
+  background: white;
+  text-align: center;
+}
+
+.c2 {
+  color:pink;
+  font-size:20px;
+  line-height: 100px; /*line-height = font-size + 行距 */
+}
+
+#c3{
+  text-align: center;
+  width: 200px;
+  border:3px solid pink;
+  border-radius:3px;
+  background: white;
+  color:pink;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.c3 {
+  font-size:100px;
+}
+
+#c4{
+  display:table;
+  background: #00a1d6;
+  text-align: center;
+  height:50px;
+  width: 100%;
+}
+
+.c4{
+  display:table-cell;
+  vertical-align:middle;
+  color:white;
+}
+
+#c5{
+  display:grid;
+  background: #00a1d6;
+  text-align: center;
+  height:50px;
+  width: 100%;
+  grid-template-columns:repeat(4,1fr);
+  align-items:center;
+  justify-content:center;
+}
+
+.c5{
+  display:table-cell;
+  color:white;
+}
+
+#c6{
+  height:80px;
+  position:relative;
+  background: #00a1d6;
+}
+
+.c6{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.main{
+  background: #00a1d6;
+  height: 100px;
+}
+
+.search {
+  display:inline-block;
+  vertical-align:middle;
+}
+.button{
+  display:inline-block;
+  background: #ddd;
+}
+
+/* span.c7 {
+  display:inline-block;
+  background: gold;
+  height: 100%;
+  width: 0;
+  vertical-align:middle;
+} */
+
+
+
+/* .search:after{
+  display:inline-block;
+  background: gold;
+  height: 50px;
+  width: 30px;
+} */
+/*vertical-align 不能影响块级元素中文本的对齐方式，这时需要创建一个兄弟元素进行比较*/
+/*::after用来创建一个伪元素，作为已选中元素的最后一个子元素*/
+.main::after{
+  content:"";
+  display:inline-block;
+  background: gold;
+  height: 100%;
+  width: 0;
+  vertical-align:middle;
+}
+</style>
+</head>
+<body>
+<div id="c1">
+      <span class="c1">为爱发电</span>
+    </div>
+    <bold style="color:#666">优点:简单，且多行文字也可居中;缺点：不能确定父元素是多少</bold>
+    <hr>
+    <div id="c2">
+      <span class="c2">为爱发电</span>
+    </div>
+    <bold style="color:#666">优点：可以给父元素设置高度;缺点：只能设置一行文字</bold>
+    <hr>
+    <div id="c3">
+      <span class="c3">为爱发电</span>
+    </div>
+    <bold style="color:#666">优点：非常简单；缺点：只兼容IE9以上</bold>  
+    <hr>
+    <ul id="c4">
+      <li class="c4">主站</li>
+      <li class="c4">死宅</li>
+      <li class="c4">导航</li>
+      <li class="c4">开除</li>
+    </ul>
+      <bold style="color:#666">优点：简单;缺点：副作用多</bold>
+      <hr>
+      <ul id="c5">
+    <li class="c5">主站</li>
+    <li class="c5">死宅</li>
+    <li class="c5">导航</li>
+    <li class="c5">开除</li>
+      </ul>
+      <bold style="color:#666;">优点：简单，但是一般适合多行布局；缺点：还是兼容性</bold>
+  <hr>
+  <div id="c6">
+    <i class="fa fa-arrow-right c6" aria-hidden="true"></i>
+    </div>
+   <bold style="color:#666;">绝对布局；缺点：脱离文档流</bold>
+    <hr>
+  </div>
+  <div class="main">
+    <div class="search">
+      <form action="">
+        <input type="text" placeholder="杨素学css"/>
+        <div class="button">搜索</div>
+      </form>
+    </div>
+  </div>
+  <bold style="color:#666;">优点：兼容性好；缺点：设置比较复杂</bold>
+</body>
+</html>

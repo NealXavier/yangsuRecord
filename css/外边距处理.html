@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://js.jirengu.com
+
+Copyright (c) 2020 by anonymous (http://js.jirengu.com/pijepopexe/9/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>css外边距塌陷</title>
+<style id="jsbin-css">
+.color{
+  color:#666;
+}
+
+
+.divC{
+  text-align: center;
+  height: 100px;
+  width: 400px;
+  background: yellow;
+}
+
+.divA{
+  text-align: center;
+  height: 100px;
+  width: 400px;
+  background: lightBlue;
+  /* position:absolute; */
+  /* overflow:auto; *//*给父元素设置BFC也是一个办法*/
+  /* border:1px solid green; */ /*如果一定要用外边距隔开,可以给父元素设置border再给子元素设置margin-top:20px;*/
+  /* padding-top:10px; */ /*设置内边距使元素B和元素A间隔开*/
+  /* position:relative; */
+}
+
+.divB{
+  text-align: center;
+  height: 20px;
+  width: 400px;
+  background: lightgrey;
+  margin-top:20px;/*本来只是想元素B间隔元素A 20px，但是却和元素C间隔开了，直观的做法，只设置内边距不设置外边距*/
+  /*给子元素设置绝对定位*/
+  /* position:absolute; */
+  /* display:inline-block; */
+  /* position:relative; */
+  /* top:20px; */
+  /* float:left; */
+}
+
+.conclusion {
+}
+
+
+
+
+</style>
+</head>
+  <ul class="color">
+    外边距塌陷需要满足以下两个条件
+    <li>块级元素</li>
+    <li>垂直方向</li>
+  </ul>
+  <ul class="color">
+    外边距计算:margin-top和margin-bottom
+    <li>正数 && 正数 ： 取大的那个</li>
+    <li>负数 && 负数 ： 取绝对值大的那个</li>
+    <li>正数 && 负数 ： 两者相加</li>
+  </ul>
+  <div class="divC">元素C</div>
+  <div class="divA">
+    <div class="divB">元素B</div>
+  </div>
+  <ul class="conclusion">
+    <li>元素A设置内边距padding-top:10px;</li>
+    <li>元素A设置border;</li>
+    <li>元素B设置display:inline-block</li>
+    <li>元素B设置position:relative;top:20px</li>
+    
+  </ul>
+</body> 
+</html>
