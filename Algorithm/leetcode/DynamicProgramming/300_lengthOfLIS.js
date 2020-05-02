@@ -36,13 +36,15 @@ var lengthOfLIS = function(nums) {
       }else{            // 如果不是就需要将nums[i] 替换tail 数组中众多比nums[i]大的最小的那一个数, 二分查找是把n->logN的 
           let left = 0;
           let right = end;
+          let mid = Infinity
           // 常规中的二分查找, 这个模板应该记起来的。
-          while(left < right){
-              let mid = left + ((right - left) >> 1);
+          while(left <= right){
+              // let mid = left + ((right - left) >> 1);  
+              mid = left+right >> 1
               if(tail[mid] < nums[i]){
                   left = mid + 1;
               }else{
-                  right = mid;
+                  right = mid - 1;
               }
           }
           // 当 lo === hi, 指向的是比nums[i]大的数中最小的那一个 

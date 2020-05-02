@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>测试leetcode</title>
+</head>
+<body>
+  <script>
+// var letterCombinations = function(digits){
+//   var arr = ["","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"]
+//   if(digits.length ===0) return []
+//   var res = []
+//   res.push('')
+//   for(var i = 0;i<digits.length;i++){ // "23"
+//     debugger
+//     var item = arr[digits[i]]   // abc  def  ("a"+"d") ("a+e") ("a+f") ("b+d") ("b+e") ("b+f") ("c+d") ("c+e") ("c+f")
+//     var curArr = []
+//     for(var j = 0;j<item.length;j++){
+//       for(var x = 0;x<res.length;x++){
+//         res.push(res[x]+item[j])
+//         curArr.push(res[x]+item[j]) 
+//       }
+//     }
+//     res = curArr
+//   }
+//   return res
+// }
+
+
+// bfs
+var letterCombinations = function(digits){
+  var arr = ["","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"]
+  if(digits.length ===0) return []
+  var res = []
+  res.push('')
+  debugger
+  for(var i = 0;i<digits.length;i++){ // "23"
+    debugger
+    var item = arr[digits[i]]   // abc  def  ("a"+"d") ("a+e") ("a+f") ("b+d") ("b+e") ("b+f") ("c+d") ("c+e") ("c+f")
+    var len = res.length;
+    for(var j = 0;j<len;j++){
+      var tmp = res.shift;
+      for(var z = 0;z<item.length;z++){
+        res.push(tmp+item[z])
+      }
+    }
+  }
+  return res
+}
+
+
+// zig zag 
+// 
+// var convert = function(s, numRows) {
+//   //
+//   if(numRows < 2) return s 
+//   var arr = new Array(numRows)
+//   for(var i = 0;i<arr.length;i++) arr[i] = ''
+//   var ioc = 0 // 控制方向
+//   var reverse = false
+//   for(var j = 0;j<s.length;j++){
+//     arr[ioc] = s[j]
+//     if(ioc === 0 || ioc === numRows - 1) reverse = !reverse
+//     ioc += reverse?1:-1 
+//   }
+//   var tmp = ''
+//   for(var z = 0;z<numRows;z++) tmp+=arr[z]     
+//   return tmp
+// };
+  </script>
+</body>
+</html>
+
+

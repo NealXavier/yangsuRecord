@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>排序算法</title>
+</head>
+<body>
+  <script>
+    var arr = [5,4,2,3,8]
+
+    // 冒泡排序
+    // var bubble = function(arr){
+    //   // 次数
+    //   for(var i = 0;i<arr.length - 1;i++){
+    //     for(var j = i;j<arr.length;j++){
+    //       if(arr[i]>arr[j]){
+    //         var tmp;
+    //         tmp = arr[i]
+    //         arr[i] = arr[j]
+    //         arr[j] = tmp  
+    //       }
+    //     }
+    //   }
+    //   return arr
+    // }
+    // var arr1 = bubble(arr)
+    
+
+    // 快速排序: 详情请观察b站视频
+    // var quickSort = function(arr,low,high){
+    //   // corner case
+    //   if(!arr || arr.length === 0) return ;
+    //   if(low<high){
+    //     var pivotIndex = participation(arr,low,high)
+    //     quickSort(arr,low,pivotIndex-1)
+    //     quickSort(arr,pivotIndex+1,high)
+    //   }
+    // }
+    // var participation = function(arr,low,high){
+    //   var left = low
+    //   var right = high
+    //   var point = arr[left]
+    //   while(left<right){
+    //     while(left<right && arr[right]>=point) right--
+    //     arr[left] = arr[right]
+    //     while(left<right && arr[left]<=point) left++
+    //     arr[right] = arr[left]
+    //   }
+    //   arr[left] = point
+    //   return left
+    // }
+    // function dial(str){
+    //   var arr = ["","","abc","def","ghi","ghi","jkl","mno","pqrs","uvw","xyz"]
+    //   var res = []
+    //   res.push('')
+    //   var curArr = []
+    //   for(var i = 0;i<str.length;i++){
+    //     var num = str[i]
+    //     var item = arr[num]
+    //     debugger
+    //     for(var i in item){
+    //       for(var s in res){
+    //         curArr.push(item[i]+res[s])
+    //       }            
+    //     }
+    //     res = curArr
+    //   }
+    //   return res
+    // }
+
+  // function ListNode(val){
+  //   this.val = val
+  //   this.next = null
+  // }
+  // // 数组转成链表
+  // function arrTransList(arr){
+  //   var head = new ListNode(0)
+  //   var pre = head
+  //   for(var i = 0,j=arr.length;i<j;i++){
+  //     pre.val = arr[i]
+  //     pre = pre.next
+  //   }
+  //   return head
+  // }
+
+  // function printList(node){
+  //   if(node){
+  //     console.log(node.val+'--->')
+  //     node = ListNode.next
+  //   }
+  // }
+  // 1 2 3 4 5 6
+  // 合并两个已经排列好的数组
+  function mergeSort(arr,left,right,mid){
+    var LArr = []
+    var RArr = []
+    var i = 0,j = 0, k = left
+    // 给左数组赋值
+    for(var l = left; l< mid;l++){
+      LArr[l-left] = arr[l]
+    }
+    // 给右数组赋值
+    for(var r = mid;r<right;r++){
+      RArr[r-mid] = arr[r]
+    }
+    while(i<LArr.length && j<RArr.length){
+      if(LArr[i]<RArr[j]){
+         arr[k++] = LArr[i]
+         i++ 
+      }else{
+        arr[k++] = RArr[j]
+        j++
+      }
+      k++
+    }
+    while(i<LArr.length){
+      arr[k++] = LArr[i++]
+    }
+    while(j<RArr.length){
+      arr[k++] = RArr[j++]
+    }
+  }
+  function sort(arr,start,end){
+    if(start >=end) return
+    var mid = (start+end) >> 2
+    sort(arr,start,mid)
+    sort(arr,mid+1,end)
+    mergeSort(arr,start,end,mid)
+  }
+  
+  </script>
+</body>
+</html>
+
+

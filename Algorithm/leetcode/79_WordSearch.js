@@ -18,10 +18,10 @@ var exist = function(word,board){
 }
 
 function dfsHelper(word,board,row,col,index,visited){
-  if(index === word.length) return true
+  if(index === word.length) return true 
   // 下面两段句不能调换位置,不然会出现数组越界的问题
-  if(board[row][col] !== word[index]) return false
   if(row < 0 || row >= board.length || col < 0 || col >= board[0].length) return false
+  if(board[row][col] !== word[index]) return false
   // 已经浏览过
   if(visited[row][col]) return false
 

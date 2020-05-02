@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>数组去重</title>
+</head>
+<body>
+    <script>
+        // 采用先排序再跟前一个元素比较看下是否相同的做法
+        // 我的做法:
+        var rawArr = [12,4,1,1]
+        var sortedArr = rawArr.concat.sort()
+        var res = []
+        var seen
+        for(var i = 0;i<sortedArr.length - 1;i++){
+          seen = sortedArr[i] 
+          // 如果是第一个元素或者 prev !== next 则放入元素
+          if(!i || seen !== sortedArr[i+1]){
+            res.push(sortedArr[i])
+          }
+        }
+        // 但是这样会导致一个问题,我这种方式是将cur和next相比
+        // 假如是[1,1,2], 第一个1天然会进去, 第二个1就会跳过和前面1的比较,导致它也进去了
+        // 所以最好的方式,是将 cur 和 prev 相比,就可以避免我上面讲的情况
+        // 那么seen 缓存的位置就要发生改变,写在 for循环的最后面,在下一次循环开始的时候就可以有记住上一次变量的效果
+        for(var i = 0;i<sortedArr.length;i++){
+          // 如果是第一个元素或者 prev !== next 则放入元素
+          if(!i || seen !== sortedArr[i]){
+            res.push(sortedArr[i])
+          }
+          seen = sortedArr[i] 
+        } 
+      
+        // 精妙的采用filter和indexOf方法的去重
+        var array = [1, 2, 1, 1, '1']
+        array.filter((item,index,array)=>{
+          return array.indexOf(item) == index
+        })
+        // 遍历元素(item) 的indexOf 为它的下标的值
+        // 因为indexOf如果在数组里面出现两次,只会返回第一次出现的索引值
+        
+
+        // underscore方法去重
+        isSorted && iteratee
+        isSorted && !iteratee
+        !isSorted && iteratee
+        !isSorted && !iteratee
+   </script>
+</body>
+</html>

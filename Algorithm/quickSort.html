@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>快速排序</title>
+</head>
+<body>
+    <script>
+      // 快速排序
+      // var quickSort = function(arr,low,high){
+      //   var pivot;
+      //   if(arr.length === 1) return arr
+      //   if(low < high){
+      //     pivot = partition(arr,low,high)
+      //     quickSort(arr,low,pivot - 1)
+      //     quickSort(arr,pivot+1,high)
+      //   }
+      // }
+      // var partition = function(arr,low,high){
+      //   var pivotKey = arr[low]
+      //   while(low < high){
+      //     while(low < high && arr[high]>=pivotKey){
+      //           high--
+      //         } 
+      //     arr[low] = arr[high]
+      //     while(low < high && arr[low]<=pivotKey){
+      //           low++
+      //         }
+      //     arr[high] = arr[low]
+      //   }
+      //     arr[low] = pivotKey
+      //     return low
+      // } 
+      
+      var convert = function(s,numRows){
+        if(numRows<=1) return s
+        var reverse = false
+        var arr = new Array(numRows)
+        var ret = ""
+        for(var i = 0;i<arr.length;i++) arr[i] = ''
+        var ioc = 0
+        var chs = s.split('')
+        for(var j = 0;j<s.length;j++){
+          arr[ioc] += chs[j]
+          if(ioc === 0 || ioc === numRows-1) reverse = !reverse
+          ioc += reverse? 1:-1
+        }
+        for(var z=0;z<arr.length;z++) ret+=arr[z]
+        return ret
+      }
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://js.jirengu.com
+
+Copyright (c) 2020 by anonymous (http://js.jirengu.com/napequxixe/21/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+  <title>computed，methods,watch之间的差别</title>
+<style id="jsbin-css">
+.box{
+  border:1px solid green;
+  height: 100px;
+  margin-top:10px;
+}
+
+</style>
+</head>
+<body>
+    <div id="app">
+      <div class="box" @click="y+=1">div1</div>
+      <div class="box" @click="getMsg()">{{y}} </div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+<script id="jsbin-javascript">
+var vm = new Vue({
+  el:'#app',
+  data(){
+    return {
+      x:0, 
+      y:0,
+      msg:''
+    }
+  },
+//   computed:{
+//     message(){
+//       console.log('来到computed了')
+//       return this.x>10?this.x+'警告':this.x
+//     }
+//   },
+//     watch:{
+//     y(val){
+//         console.log('来到watch了。')
+//         if(val >=10){
+//           this.msg = '警告'
+//         }
+//     }
+//   },
+  methods:{
+    getMsg(){
+      console.log('来到method了')
+//       return this.y>10?this.y+'警告':this.y
+      this.y++
+    }
+  }
+})
+
+
+// computed
+// 字面意思上：计算属性，只在方法内关联的数据发生改变时才更新，
+// 例如：我点击div1,y在不断自增，而computed中message属性中会关联到y，这时每次点击（调用）就会执行message,也就是说它是有缓存的。
+
+// watch
+// 字面意思上是监听属性，当每次y发生变化时，就会调用watch中的y(val)方法，也就是监听y的变化，一旦变化就会调用，需要注意的是，不像computed,在watch中监听y的变化需要用一个新的变量来接收y的变化例如这里的 msg,
+
+// method
+// 字面意思是方法，就是点击事件就会触发，它是一个方法，而computed,watch里面的是属性，所以它每次触发都会执行getMsg方法，从调用方式来看，它需要后面有()圆括号。而且方法名只能写在html标签区域，而不能像watch,computed那样写在text区域。
+
+
+</script>
+</body>
+</html>
