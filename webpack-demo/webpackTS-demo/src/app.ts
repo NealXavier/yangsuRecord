@@ -2,7 +2,7 @@ import * as _ from 'lodash'
 
 const NUM = 45
 
-console.log(_.chunk(2))
+console.log(_.chunk([1,2,3],2))
 
 interface Cat{
   name:String,
