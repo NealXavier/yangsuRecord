@@ -1,0 +1,12 @@
+{
+  "compilerOptions":{
+    "module":"commonjs", // 当target为es3时，默认module为commonjs
+    "target":"ES5"      // 可以理解成什么语法
+  },
+  "include":[
+    "./src/*"
+  ],
+  "exclude": [
+    "./node_modules"
+  ]
+}
