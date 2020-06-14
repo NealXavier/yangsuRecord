@@ -1,0 +1,4 @@
+{
+  // 将airbnb -> airbnb-base
+  "extends":"airbnb-base"
+}
