@@ -1,0 +1,25 @@
+{
+  "name": "11.pro_eslintjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+  },
+  "broserslist":{
+    "development":[
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "production":[
+      ">0.001%",
+      "not dead",
+      "not op_mini all"
+    ]
+  }
+}
