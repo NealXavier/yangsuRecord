@@ -159,23 +159,3 @@ module.exports = {
     jquery: 'jQuery'
   }
 }
-
-
-/**
- * 
- * PWA: 一种离线访问技术，可以使访问体验更好。
- *  
- *  问题： Failed to load config "airbnb-base" to extend from.
- *      1. 对于 .eslint 不认识 window 和 navigator ,需要在 .eslintrc 额外配置。
- * 
- * 
- * 写完上面的代码(index.js 配置serviceWorker的代码 )之后还不能执行
-   还需要 serviceWorker 必须运行在服务器上， 所以需要全局安装 npm i serve -g 
-                                  serve -s build 启动服务器，将build 目录下所有资源作为静态资源暴露出去。会给你提示访问地址，就能访问了
-
-   为了体现实验效果，可以把网络调成 offline状态模拟离线。
-
-
-   在application页签会有一个CacheStorage,里面有打包文件的缓存。
- * 
- */
