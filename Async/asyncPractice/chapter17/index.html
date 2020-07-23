@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用async/await去处理异步</title>
+</head>
+<body>
+    <script>
+        // 模拟获取数据的方法
+        let fetch = new Promise((resolve,reject)=>{
+          setTimeout(() => {
+            resolve({"name":"胖虎"})
+          }, 2000);
+        })
+        class Hello{
+          get(){
+            let user = fetch()
+            user.name += '.com'
+            return user
+          }
+        }
+        new Hello()
+          .get()
+          .then((value)=>console.log(value.name)) // undefined.com 这样显然不行，因为 fetch是异步，导致 user.name +='.com'先执行了
+
+
+      // 应该将 get()方法改成 async 方法,这样就可以把fetch变成同步方法
+      class Hello{
+        async get(){
+          let user = await fetch()
+          user.name += '.com'
+          return user
+        }
+      }
+      new Hello()
+        .get()
+          .then((value)=>console.log(value.name))  // 胖虎.com
+    </script>
+</body>
+</html>

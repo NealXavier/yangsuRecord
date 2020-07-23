@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=s, initial-scale=1.0">
+  <title>复杂的Promise对象then用法</title>
+</head>
+<body>
+  <script>
+    let p1 = new Promise((resolve,reject)=>{
+      resolve('123')
+    })
+    .then((result)=>{
+      // return '你不知道的Promise对象'
+      // return new Promise((resolve,reject)=>{
+      //   resolve('第二个then对象')
+      // })
+      // console.log("我都不知道");
+      // return new Promise((resolve,reject)=>{
+      //   return "超级半截击"   
+      // })  // 后面打印不出来，说明new Promise里面一定需要resolve()或者reject什么内容才可以。
+      return new Promise((resolve,reject)=>{
+        //   setTimeout(()=>{
+        //   resolve('setTimemout下的第二个resolve')
+        // },2000)
+        setTimeout(()=>{
+          reject('setTimeout下的第二个reject')
+        },2000)
+      }).then(null,reject=>{
+        // return "秋名山车神"
+        return new Promise((resolve,reject)=>{
+          resolve('reject之后的resolve')
+        })
+      })
+    })
+    .then(
+      (result)=>{
+        console.log('value:'+result);
+      },
+      (error)=>{
+        console.log('error:'+error);
+      })
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+    <script>
+      async function get(name){
+        return fetch(`http://localhost:9080/index.html?name=${name}`)
+      }
+      get('胖虎')
+      .then((user) => {
+        console.log(user.name);
+      }).catch((err) => {
+        console.log('err:',err);
+      });
+    </script>
+</body>
+</html>

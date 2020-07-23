@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>map模拟promise队列</title>
+</head>
+<body>
+    <script>
+      // 效果： 每隔2s弹出一个数值
+      // 注意两点：1. 后一个Promise对象必须在前一个Promise对象完成之后才能执行。所以需要用 promise来接收前一个对象
+      //          2. 需要每隔2s弹出来，所以需要用resolve()方法来控制。 如果没有resolve()那么将一次性打印输出。
+      let promise = Promise.resolve()
+      let arr = [1,2,3,4,5]
+      arr.map((v)=>{
+        promise = promise.then((result) => {
+          return new Promise((resolve,reject)=>{
+            setTimeout(() => {
+              console.log(v);
+              resolve()
+            }, 2000);
+          })
+        })
+      })
+    </script>
+</body>
+</html>

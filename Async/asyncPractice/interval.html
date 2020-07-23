@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>异步编程之定时器</title>
+  <style>
+      #block{
+        position: relative;/*移动元素必须使用*/
+        width: 200px;
+        height: 200px;
+        background-color: #FB7299;
+      }
+  </style>
+</head>
+<body>
+    <div id="block"></div>
+    <script>
+        // 设置定时器
+        function interval(callback,delay = 50){
+          let timer = setInterval(()=>{
+            callback(timer)
+          },delay)
+        }
+        interval((timer)=>{
+          const block = document.getElementById('block')
+          let left = (window.getComputedStyle(block).left)==='auto'?0:parseInt(window.getComputedStyle(block).left)
+          if(left >= 500){
+            clearInterval(timer)
+            setInterval((timer)=>{
+              let width = parseInt(window.getComputedStyle(block).width) // 获取宽度
+              block.style.width = width - 10 + 'px'                      // 逐渐缩小宽度
+            },50)
+          }
+          block.style.left = left + 10 + 'px' // 能移动的前提是dom元素需要是绝对定位或者相对定位
+        })
+        console.log('主线程执行完毕~')  // 需要主线程先执行完了再执行消息队列
+    </script>
+</body>
+</html>

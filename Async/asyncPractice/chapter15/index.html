@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>async与await制作按时间打印</title>
+</head>
+<body>
+    <script>
+        async function sleep(delay = 2000){
+          return new Promise((resolve)=>{
+            setTimeout(() => {
+              resolve()
+            }, delay);
+          })
+        }
+        async function show(){
+          const users = ['奇犽','酷拉皮卡']
+          for(let user of users){
+            await sleep() // await 只能用于async里面,aj所以就只能这样的了。
+            console.log(user);
+          }
+        }
+        show()
+    </script>
+</body>
+</html>

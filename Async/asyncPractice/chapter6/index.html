@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义异常</title>
+</head>
+<body>
+  <script src= './ajax.js'></script>
+  <script>
+    ajax('https://www.baidu.com')
+    .then((result) => {
+      
+    }).catch((err) => {
+      if(err instanceof ParamError){
+        alert(err.message)
+      }
+      if(err instanceof HttpError){
+        console.error(err.message)
+      } 
+    });
+  </script>
+</body>
+</html>

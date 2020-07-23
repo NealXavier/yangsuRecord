@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>异步编程之Promise整理interval</title>
+  <style>
+      #block{
+        position: relative;/*移动元素必须使用*/
+        width: 200px;
+        height: 200px;
+        background-color: #FB7299;
+      }
+  </style>
+</head>
+<body>
+    <div id="block"></div>
+    <script>
+        // 设置interval
+        function interval(callback,delay=50){
+          return new Promise((resolve=>{
+            let timerId = setInterval(()=>{
+              callback(timerId,resolve)
+            },delay)
+          }))
+        }
+        interval((timerId,resolve)=>{
+          let block = document.getElementById('block')
+          let left = parseInt(window.getComputedStyle(block).left)
+          block.style.left = left + 10 + 'px'
+          if(left>=200){
+            clearInterval(timerId)
+            resolve(block)
+          }
+        },50)
+        .then((block) => {
+          return interval((timerId,resolve)=>{
+            
+            let width = parseInt(window.getComputedStyle(block).width)
+            block.style.width = (width - 10) + 'px' 
+            if(width<=20){
+              clearInterval(timerId)
+              resolve(block)
+            }
+          },50)
+        })
+        .then((block)=>{
+            block.style.background = '#00a1d6'
+        });
+    </script>
+</body>
+</html>

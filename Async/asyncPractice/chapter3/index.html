@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于宏任务和微任务</title>
+</head>
+<body>
+  <script>
+    let promise = new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        resolve()
+        console.log('setTimeout'); 
+      },0)
+      console.log('promise')
+    })
+    .then(value=>console.log('后盾人'))
+    console.log('www.houdunren.com')
+    // 打印输出结果为：
+    // promise
+    // www.houdunren.com
+    // setTimeout
+    // 后盾人
+  </script>
+</body>
+</html>

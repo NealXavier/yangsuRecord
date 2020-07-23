@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>24.Promise.all批量获取数据</title>
+</head>
+<body>
+    <script>
+        // Promise.all([p1,p2,...]) p1,p2 分别代表的都是Promise对象
+        // 当所有已经完成状态中的Promise对象中如果其中有任一reject状态，则Promise.all 结果都为Rejection，否则为 Fulfillment
+        const p1 = new Promise((resolve,reject)=>{
+          throw new Error('失败了')
+        })
+        .catch((err)=>{
+          console.log('很明显失败了');
+        })
+
+        const p2 = new Promise((resolve,reject)=>{
+          resolve('p2成功了')  
+        })
+        Promise.all([p1,p2])
+          .then((result)=>{
+            console.log(result); // 打印结果,[undefined,'p2成功了']  
+            // 细节: 说明已经是成功状态了。说明p1这个代码块包括catch处理完了之后就是一个"成功"状态不是"失败"状态
+            // 返回的是结果数组
+          })
+
+        
+        // 批量获取数据
+        function getUsers(names){
+          const promises = names.map((name)=>{
+            return ajax(`localhost:8080?name=${name}`)
+          })
+          return Promise.all(promises)
+        }
+        
+        getUsers(['大雄','胖虎','小夫'])
+          .then((users)=>{
+            console.log(users);
+          })
+    </script>
+</body>
+</html>

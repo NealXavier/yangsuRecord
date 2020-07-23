@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用reduce来渲染</title>
+</head>
+<body>
+    <script>
+        function render(users){
+          users.reduce((promise,user)=>{
+            return promise.then(_ => {
+                // 获取用户数据
+                ajax(user)
+            })
+            .then((user)=>{ // 都是返回一个Promise对象
+              return view(user) // 渲染界面
+            }) 
+          },Promise.resolve())
+        }
+        
+        // view 方法会是一个Promise对象
+        function view(user){
+          return new Promise((resolve)=>{
+            let h2 = document.createElement('h2')
+            h2.innerHTML = user.names
+            document.body.appendChild(h2)
+            resolve() // 完成状态
+          })
+        }
+    </script>
+</body>
+</html>

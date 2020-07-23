@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise.race的使用场景</title>
+</head>
+<body>
+    <script>
+      // 用于判断请求是否超时
+      // Promise.race 这个API在有多个promise的情况,取最先完成的promise的状态
+      // 应用场景： 用来判断读取数据是否超时
+      const query = (url,delay)=>{
+        const p1 = ajax()
+        const p2 = new Promise((resolve,reject)=>{
+          setTimeout(()=>{
+            reject("请求超时了")
+          },delay)
+        })
+        return Promise.race(p1,p2)
+      }
+
+      query(`localhost:8080/index.html?username=后盾人`,300)
+        .then((result) => {
+          console.log("result",result); 
+        }).catch((err) => {
+          console.log("failed due to :",err);
+        });
+    </script>
+</body> 
+</html>

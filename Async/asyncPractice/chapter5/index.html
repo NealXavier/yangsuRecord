@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>catch的处理方式</title>
+</head>
+<body>
+    <script>
+        // 1. 出于习惯，catch用于最后捕获：
+        // 原因: catch可以捕获前面所有发生过的错误,如果不写在最后，后面的如果出现错误，将无法捕获。
+        let p1 = new Promise((resolve,reject)=>{
+          reject('p1可以')
+        })
+        .catch(err=>{
+          console.log('catch 捕获问题');
+        })
+        .then((res)=>{
+          // console.log('then resolve1方法');
+          return new Promise((resolve,reject)=>{
+            reject('p2不行')
+          })
+        })
+        .then((res)=>{
+          console.log('then resolve2方法');
+        }
+        ,(err)=>{
+          console.log('err'+ err);
+          // console.log('then 捕获问题'); // then是可以捕获reject('p2不行')的问题，是可以跨级捕获的，也就是说和catch是一样的
+        })
+        
+        // 打印： "catch捕获问题" 、 "then捕获问题"
+        
+        // 2. 如果前面靠前的then方法已经对异常进行了，那catch不会再进行捕获
+        // let p1 = new Promise((resolve,reject)=>{
+        //   resovle('p1可以')
+        // })
+        // .then((res)=>{
+        //   return new Promise((resolve,reject)=>{
+        //     reject('p2不行')
+        //   })
+        // })  
+        // .then((res)=>{
+        //   console.log('then resolve方法');
+        // },(err)=>{
+        //   console.log('then 捕获问题');
+        // })
+        // .catch(err=>{
+        //   console.log('catch 捕获问题');
+        // })
+        // 打印 "then捕获问题"
+    </script>
+</body>
+</html>

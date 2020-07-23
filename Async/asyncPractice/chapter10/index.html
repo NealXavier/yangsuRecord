@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise.resolve这个API</title>
+</head>
+<body>
+    <script>
+      // 其中Promise.resolve 这个API等于以下API
+      // Promise.resolve = function(){
+      //   return new Promise((resolve,reject)=>{
+      //     resolve()
+      //   })
+      // }
+
+      const query = (id)=>{
+        // 防止重复id的请求多次发送，可以加缓存
+        // 因为函数本身就是对象，可以把缓存放入query的某个对象中
+        const cache = query.cache || (query.cache = new Map())
+
+        if(cache.has(id)){
+          cache.get(id)
+          console.log('走了缓存');
+        }
+        // ajax 是一个远程异步请求
+        return ajax(`localhost:8080?id=${id}`)
+                .then((user)=>{
+                   // 写入缓存
+                   cache.set(id,user)
+                   console.log('没走缓存');
+                   return user
+                })
+      }
+      // 这里有个细节，需要加上setTimeout这个表示请求延迟，直接把该方法去掉会导致cache还没将结果缓存起来就已经发起ajax了。
+      setTimeout(()=>{
+        query('1213')
+      },1000)
+
+
+      setTimeout(()=>{
+        query('1213')
+      },1000)
+    </script>
+</body>
+</html>

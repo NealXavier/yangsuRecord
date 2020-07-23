@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>thenable对象</title>
+</head>
+<body>
+    <script>
+      let p1 = new Promise((resolve)=>{
+        resolve('胖虎')
+      })
+    class User{
+      constructor(name){
+        this.name = name
+      }
+      then(resolve,reject){
+        let user = p1
+        resolve(user) // 必须resolve表示状态已经解决
+      }
+    }
+    async function get(){
+      let user = await new User('小夫')
+      // await 就是替代.then(result=>{})这一步
+      // let user = await p1
+      console.log('成功获取的名字是：'+ user);
+    }
+    get()
+    </script>
+</body>
+</html>
