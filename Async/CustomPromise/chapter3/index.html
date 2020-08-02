@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>then方法基础构建</title>
+</head>
+<body>
+  <script src="custom.js"></script>
+  <script>
+    // 调用区
+    let p =new CusPromise((resolve,reject)=>{
+      // resolve('解决了') 
+      // 问题2: 如果是拒绝状态，是可以不传函数的,但是这里不传会报错
+      reject('拒绝') 
+    })
+    .then((result) => { //问题1： 如果直接调用then里面的回调函数,则变成了不考虑前一环节的状态了
+      console.log("result:"+ result); 
+    },(reason)=>{
+      console.log("reject:"+ reason);
+    })
+
+  </script>
+</body>
+</html>

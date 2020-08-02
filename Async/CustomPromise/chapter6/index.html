@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise的pending状态下的异常捕获</title>
+</head>
+<body>
+  <script src='custom.js'></script>
+  <script>
+    new CusPromise((resolve,reject)=>{
+      setTimeout(() => {
+        reject('失败了')
+      }, 1000);
+    })
+    .then(value=>{
+      console.log(value) // 问题1：abc未定义会报错，这时需要统一在reject处理一下
+    },err=>{
+      console.log(eee)
+    })
+    console.log("promise")
+  </script>
+</body>
+</html>

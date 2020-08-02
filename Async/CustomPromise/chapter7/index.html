@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PENDING异步处理技巧</title>
+</head>
+<body>
+  <script src='custom.js'></script>
+  <script>
+    // new Promise((resolve,reject)=>{
+    //   setTimeout(() => {
+    //     resolve('解决了')
+    //     console.log('setTimeout内的同步代码');
+    //   }, 1000)
+    // })
+    // .then(value=>{
+    //   console.log(value);
+    // })
+    // console.log("setTimeout外的同步代码");
+    // 打印顺序是 : setTimeout外的同步代码    setTimeout内的同步代码   解决了
+
+    new CusPromise((resolve,reject)=>{
+      setTimeout(() => {
+        resolve('解决了')
+        console.log('setTimeout内的同步代码');
+      }, 1000)
+    })
+    .then(value=>{
+      console.log(value);
+    })
+    console.log("setTimeout外的同步代码");  // 问题1："解决了"比"setTimeout内的同步代码"先输出
+
+  </script>
+</body>
+</html>

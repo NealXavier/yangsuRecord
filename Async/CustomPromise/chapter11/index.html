@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>then方法返回Promise的处理</title>
+</head>
+<body>
+  <script src="custom.js"></script>
+  <script>
+    new CusPromise((resolve,reject)=>{
+      resolve('解决1')
+      // reject('失败了')
+    })
+    .then(value=>{
+      // return new CusPromise((resolve,reject)=>{  // 问题1： 针对then方法返回的是Promise对象的情况，如果不做兼容处理，会出现下一个then的回调参数是Promise对象的情况。
+      //   resolve(value)
+      // }) 
+      return 'then后的Promise'
+    },
+    reason=>{
+      return new CusPromise((resolve,reject)=>{
+        reject('reject里面的解决2')
+      })
+      // return "reject里面的解决2" 
+    }
+    )
+    .then(value=>{
+      console.log("value:" + value);
+    },
+    reason=>{
+      console.log("reason:"+reason);
+    }
+    )
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>then方法异常捕获和异步输出</title>
+</head>
+<body>
+  <script src="custom.js"></script>
+  <script>
+    // 调用区
+    let p =new CusPromise((resolve,reject)=>{
+      resolve('拒绝') 
+    })
+    .then((result) => {
+      console.log("result:"+ abc) // 问题1：因为abc未定义应该输出报错
+    },(reason)=>{
+      console.log("reject:"+ abc)
+    })
+    console.log("打印clg");     // 问题2: 因为"打印clg" 是同步代码，打印应该在"then方法"的之前
+  </script>
+</body>
+</html>

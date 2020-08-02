@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pormise的PENDING状态处理</title>
+</head>
+<body>
+  <script src="custom.js"></script>
+  <script>
+    // let p1 = new Promise((resolve,reject)=>{
+    //   setTimeout(() => {
+    //     resolve('解决了')
+    //   }, 2000);
+    // })
+    // .then(value=>console.log(value))  // 正常情况
+
+    let p1 = new CusPromise((resolve,reject)=>{
+      setTimeout(() => {
+        reject('失败了') 
+      }, 1000);
+    })
+    .then(value=>{
+      console.log(value)    // 问题1： 发现这里没有打印输出，说明在resolve('解决')之前 then 先执行了。
+    },err=>console.log(err)) 
+  </script>
+</body>
+</html>

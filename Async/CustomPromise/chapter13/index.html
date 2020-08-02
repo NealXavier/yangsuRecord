@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>约束Promise对象返回类型</title>
+</head>
+<body>
+  <script src="custom.js"></script>
+  <script>
+    // new CusPromise((resolve,reject)=>{
+    //   // resolve('解决1')
+    //   reject('失败了')
+    // })
+    // .then(value=>{
+    //   return new CusPromise((resolve,reject)=>{  
+    //     resolve(value)
+    //   })
+    //   // return 'then后的Promise'
+    // },
+    // reason=>{
+    //   return new CusPromise((resolve,reject)=>{
+    //     reject('reject里面的解决2')
+    //   })
+    //   return "reject里面的解决2" 
+    // }
+    // )
+    // .then(value=>{
+    //   console.log("value:" + value);
+    // },
+    // reason=>{
+    //   console.log("reason:"+reason);
+    // }
+    // )
+
+    // let p = new Promise((resolve,reject)=>{
+    //   resolve('解決了')
+    // })
+    // let p1 = p.then(value=>p1)      // 原生的会抛出错误Chaining cycle
+    
+    let promise = new CusPromise((resolve,reject)=>{
+      resolve('解决')
+    })
+    let p1 = promise.then(value=>{    // 问题1：原生的并无报出Chaining cycle 错误
+      return p1
+    })
+  </script>
+</body>
+</html>

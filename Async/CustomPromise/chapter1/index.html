@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>声明Promise并绑定this</title>
+</head>
+<body>
+  <script src="custom.js"></script>
+  <script>
+    // 调用区
+    let p =new CusPromise((resolve,reject)=>{
+      resolve("解决了")
+      // reject("失败了")
+    })
+    console.log(p);
+  </script>
+</body>
+</html>

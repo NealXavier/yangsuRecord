@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>then方法新增Promise异常处理</title>
+</head>
+<body>
+  <script src="custom.js">
+  </script>
+  <script>
+    new CusPromise((resolve,reject)=>{
+      resolve('解决了')
+    })
+    .then(value=>{
+      console.log(abc);   // 问题1： abc未定义，没有提示报错
+    })
+    .then(null,reason=>console.log('err:'+reason))
+  </script>
+</body>
+</html>

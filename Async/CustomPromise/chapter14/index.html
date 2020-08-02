@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手写Promise.resolve和reject静态方法</title>
+</head>
+<script src="./custom.js"></script>
+<script>
+  // CusPromise.resolve('解决')
+  //   .then(value=>{console.log("value:"+value);})
+  let p1 = new CusPromise((resolve,reject)=>{
+    resolve('解决了')
+  })
+  // CusPromise.resolve(p1)
+  //   .then(value=>console.log("value:"+value))
+  
+</script>
+<body>
+</body>
+</html>

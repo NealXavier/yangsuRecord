@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>状态保护和异常捕获</title>
+</head>
+<body>
+  <script src="custom.js"></script>
+  <script>
+    // 调用区
+    let p =new CusPromise((resolve,reject)=>{
+      // 问题2：在executor内出现未知错误时没有捕获
+      console.log(a);
+      reject("失败了")
+      resolve("解决了")
+      // 问题1.如果resolve和reject同时出现,会同时出现"解决了"和"失败了"两种结果
+      // 所以需要对状态进行保护
+    })
+    console.log(p);
+  </script>
+</body>
+</html>

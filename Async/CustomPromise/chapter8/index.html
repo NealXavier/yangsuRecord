@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实现Promise链式操作</title>
+</head>
+<body>
+  <script src='custom.js'></script>
+  <script>
+      new CusPromise((resolve,reject)=>{
+        // resolve('解决了')
+        // reject('不成')      // 问题3: 如果使用reject之后打印不出p2，正常来讲，如果reason 函数处理之后应该可以返回"解决"状态Promise的
+        setTimeout(() => {
+          resolve('隔一秒后解决')   // 问题4: PENDING 状态下也需要返回resolve状态的Promise
+        }, 1000);
+      })
+      .then(value=>{
+        return value
+      },
+      reason=>{
+        return "没关系"
+      })
+      .then(value=>{    // 问题1： 使用链式操作会提示:cannot read property 'then' of undefined 
+        console.log(value);  // 问题2：没有打印 p2
+      })
+  </script>
+</body>
+</html>
