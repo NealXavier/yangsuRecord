@@ -24,6 +24,7 @@
             },delay)
           }))
         }
+
         interval((timerId,resolve)=>{
           let block = document.getElementById('block')
           let left = parseInt(window.getComputedStyle(block).left)
@@ -34,13 +35,13 @@
           }
         },50)
         .then((block) => {
+          // 如果后续不需要操作则不需要返回return 
           return interval((timerId,resolve)=>{
-            
             let width = parseInt(window.getComputedStyle(block).width)
             block.style.width = (width - 10) + 'px' 
             if(width<=20){
               clearInterval(timerId)
-              resolve(block)
+              resolve(block)  // 改变状态
             }
           },50)
         })

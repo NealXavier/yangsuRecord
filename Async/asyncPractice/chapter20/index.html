@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>玩累加</title>
+</head>
+<body>
+    <script>
+      async function hd(){
+        let res = await Promise.resolve().then(_=>{
+          let nums = 1000000000
+          let count = 0
+          for(let i = nums;i>0;i--){
+            count+=i
+          }
+          return count
+        })
+        // 取出结果
+        console.log(res);
+      }
+      hd()
+      // 因为累加比较消耗时间，为了不影响到累加下面的操作，所以放到任务队列里面执行。
+      console.log("玩累加");
+    </script>
+</body>
+</html>
